@@ -22,24 +22,52 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.osgi.bundle.template;
+package io.github.astrapi69.osgi.bundle.swing.base;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class Activator implements BundleActivator
+import io.github.astrapi69.awt.screen.position.ComponentPositionStore;
+
+public class SwingFrameActivator implements BundleActivator
 {
 
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		System.out.println("io.github.astrapi69.osgi.bundle.template.Activator started.");
+		// create a component for instance a JFrame...
+		JFrame frame = new JFrame("JFrame from osgi");
+		JPanel panel = new JPanel();
+		JLabel label = new JLabel("bla");
+		panel.add(label);
+		panel.setPreferredSize(new Dimension(400, 300));
+		frame.getContentPane().setSize(800, 400);
+		frame.getContentPane().add(panel);
+		// create a store for the component position
+		final ComponentPositionStore componentPositionStore = new ComponentPositionStore(frame,
+			SwingFrameActivator.class, 600, 500);
+		// restore the component position...
+		componentPositionStore.restorePosition();
+		// add a shutdown hook...
+		Runtime.getRuntime().addShutdownHook(new Thread(componentPositionStore::storePosition));
+		// show the frame...
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.pack();
+		System.out.println("io.github.astrapi69.osgi.bundle.swing.base.Activator started.");
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception
 	{
-		System.out.println("io.github.astrapi69.osgi.bundle.template.Activator stopped.");
+		System.out.println("io.github.astrapi69.osgi.bundle.swing.base.Activator stopped.");
 	}
 
 }

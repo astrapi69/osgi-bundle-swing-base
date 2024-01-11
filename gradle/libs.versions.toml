@@ -15,6 +15,7 @@ spotless-plugin-gradle="6.23.3"
 #########################
 lombok="1.18.30"
 osgi-core="8.0.0"
+awt-extensions = "1.2"
 ##############################
 # test dependencies versions #
 ##############################
@@ -41,6 +42,7 @@ spotless-plugin-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradl
 ##########################
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok"}
 osgi-core = { module = "org.osgi:osgi.core", version.ref = "osgi-core"}
+awt-extensions = { module = "io.github.astrapi69:awt-extensions", version.ref = "awt-extensions"}
 ###############################
 # test dependencies libraries #
 ###############################

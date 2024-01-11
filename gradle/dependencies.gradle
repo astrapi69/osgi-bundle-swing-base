@@ -8,6 +8,8 @@ dependencies {
 
     compileOnly libs.osgi.core
 
+    implementation libs.awt.extensions
+
     testImplementation libs.silly.io
     testImplementation libs.file.worker
     testImplementation libs.throwable
