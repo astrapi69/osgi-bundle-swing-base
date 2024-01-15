@@ -12,6 +12,7 @@ jar {
                 "Bundle-RequiredExecutionEnvironment"   : "$bundleRequiredExecutionEnvironment",
                 "Bundle-Activator"                      : "$bundleActivator",
                 "Import-Package"                        : "$importPackage",
+                "Export-Package"                        : "$exportPackage",
 
                 "Name"                                  : project.name,
                 "Implementation-Title"                  : "$groupPackage" + "." + "$rootProject.name",
